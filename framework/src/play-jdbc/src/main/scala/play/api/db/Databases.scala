@@ -155,8 +155,8 @@ abstract class DefaultDatabase(val name: String, configuration: Config, environm
   }
 
   def withConnection[A](autocommit: Boolean)(block: Connection => A): A = {
-    val connection = getConnection(autocommit)
     try {
+      val connection = getConnection(autocommit)
       block(connection)
     } finally {
       connection.close()
